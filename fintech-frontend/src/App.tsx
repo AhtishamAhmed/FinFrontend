@@ -7,6 +7,7 @@ import { ForgotPasswordPage } from '@/pages/ForgotPasswordPage'
 import { ResetPasswordPage } from '@/pages/ResetPasswordPage'
 import { DashboardPage } from '@/pages/DashboardPage'
 import { ProfilePage } from '@/pages/ProfilePage'
+import { WalletsPage } from '@/pages/WalletsPage'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route element={<AppLayout />}>
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/wallet" element={<WalletsPage />} />
         </Route>
       </Route>
     </Routes>
