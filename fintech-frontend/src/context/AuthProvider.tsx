@@ -42,8 +42,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  function updateUser(updates: Partial<CurrentUser>) {
+    setUser((prev) => (prev ? { ...prev, ...updates } : prev))
+  }
+
   return (
-    <AuthContext.Provider value={{ user, isLoading, isAuthenticated: user !== null, login, logout }}>
+    <AuthContext.Provider value={{ user, isLoading, isAuthenticated: user !== null, login, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   )

@@ -17,6 +17,9 @@ export function Navbar() {
             <NavLink to="/dashboard" className={navLinkClassName}>
               Dashboard
             </NavLink>
+            <NavLink to="/profile" className={navLinkClassName}>
+              Profile
+            </NavLink>
           </nav>
         </div>
 

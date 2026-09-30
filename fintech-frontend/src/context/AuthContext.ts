@@ -7,6 +7,9 @@ export interface AuthContextValue {
   isAuthenticated: boolean
   login: (payload: LoginRequest) => Promise<void>
   logout: () => Promise<void>
+  // Merges into the cached user (e.g. after a profile edit) so the navbar
+  // reflects it immediately, without a second round trip to /auth/me.
+  updateUser: (updates: Partial<CurrentUser>) => void
 }
 
 // undefined (not null) is the "used outside a provider" sentinel — useAuth()
