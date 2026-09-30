@@ -1,10 +1,14 @@
-import type { ReactNode } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 
-// Wrap any page that requires a logged-in user:
-//   <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
-export function ProtectedRoute({ children }: { children: ReactNode }) {
+// A layout route: wrap a group of routes with it instead of each page
+// individually.
+//   <Route element={<ProtectedRoute />}>
+//     <Route path="/dashboard" element={<DashboardPage />} />
+//   </Route>
+// React Router renders this element first; <Outlet /> is where the matched
+// child route then renders.
+export function ProtectedRoute() {
   const { isAuthenticated, isLoading } = useAuth()
 
   if (isLoading) {
@@ -15,5 +19,5 @@ export function ProtectedRoute({ children }: { children: ReactNode }) {
     return <Navigate to="/login" replace />
   }
 
-  return children
+  return <Outlet />
 }

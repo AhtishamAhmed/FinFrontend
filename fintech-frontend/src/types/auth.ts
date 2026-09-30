@@ -39,3 +39,19 @@ export interface CurrentUser {
   lastName: string
   roles: string[]
 }
+
+export interface RefreshTokenResponse {
+  token: string
+  refreshToken: string
+  expiresAtUtc: string
+}
+
+export interface ForgotPasswordRequest {
+  email: string
+}
+
+export interface ResetPasswordRequest {
+  email: string
+  token: string
+  newPassword: string
+}

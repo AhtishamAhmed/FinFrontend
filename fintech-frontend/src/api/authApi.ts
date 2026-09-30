@@ -1,6 +1,15 @@
 import { apiClient } from './client'
 import type { ApiResponse } from '@/types/api'
-import type { CurrentUser, LoginRequest, LoginResponse, RegisterRequest, RegisterResponse } from '@/types/auth'
+import type {
+  CurrentUser,
+  ForgotPasswordRequest,
+  LoginRequest,
+  LoginResponse,
+  RefreshTokenResponse,
+  RegisterRequest,
+  RegisterResponse,
+  ResetPasswordRequest,
+} from '@/types/auth'
 
 // Thin wrappers around each AuthController endpoint. Components never call
 // apiClient/axios directly — they call these functions, which know the
@@ -22,5 +31,20 @@ export async function getCurrentUser() {
 
 export async function logout(refreshToken: string) {
   const { data } = await apiClient.post<ApiResponse<string>>('/auth/logout', { refreshToken })
+  return data
+}
+
+export async function refreshToken(refreshToken: string) {
+  const { data } = await apiClient.post<ApiResponse<RefreshTokenResponse>>('/auth/refresh-token', { refreshToken })
+  return data
+}
+
+export async function forgotPassword(payload: ForgotPasswordRequest) {
+  const { data } = await apiClient.post<ApiResponse<string>>('/auth/forgot-password', payload)
+  return data
+}
+
+export async function resetPassword(payload: ResetPasswordRequest) {
+  const { data } = await apiClient.post<ApiResponse<string>>('/auth/reset-password', payload)
   return data
 }
